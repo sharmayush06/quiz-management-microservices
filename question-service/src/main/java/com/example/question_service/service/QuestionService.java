@@ -48,4 +48,8 @@ public class QuestionService {
         }
         return new ResponseEntity<>(score,HttpStatus.OK);
     }
+
+    public ResponseEntity<?> addQuestion(Question question) {
+        return new ResponseEntity<>(questionRepo.save(question),HttpStatus.ACCEPTED);
+    }
 }
