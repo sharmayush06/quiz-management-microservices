@@ -36,4 +36,11 @@ public class QuestionController {
     public ResponseEntity<Integer> calculateResult(@RequestBody List<ResultDto> resultDtos){
         return questionService.calculateResult(resultDtos);
     }
+
+    @PostMapping("/questions")
+    public ResponseEntity<List<QuestionWrapper>> getQuestions(
+            @RequestBody List<Integer> ids) {
+
+        return questionService.getQuestions(ids);
+    }
 }

@@ -52,4 +52,27 @@ public class QuestionService {
     public ResponseEntity<?> addQuestion(Question question) {
         return new ResponseEntity<>(questionRepo.save(question),HttpStatus.ACCEPTED);
     }
+
+    public ResponseEntity<List<QuestionWrapper>> getQuestions(List<Integer> ids) {
+
+        List<Question> questions = questionRepo.findByQuestionIdIn(ids);
+
+        List<QuestionWrapper> questionWrappers = new ArrayList<>();
+
+        for (Question question : questions) {
+
+            QuestionWrapper wrapper = new QuestionWrapper();
+
+            wrapper.setQuestionId(question.getQuestionId());
+            wrapper.setQuestion(question.getQuestion());
+            wrapper.setOption1(question.getOption1());
+            wrapper.setOption2(question.getOption2());
+            wrapper.setOption3(question.getOption3());
+            wrapper.setOption4(question.getOption4());
+
+            questionWrappers.add(wrapper);
+        }
+
+        return new ResponseEntity<>(questionWrappers, HttpStatus.OK);
+    }
 }

@@ -13,4 +13,6 @@ import java.util.List;
 public interface QuestionRepo extends JpaRepository<Question,Integer> {
     @Query(value = "SELECT * FROM Question where difficulty = :difficulty AND category = :category ORDER BY RAND() LIMIT :questionNo",nativeQuery = true)
     List<Question> getSelectedQuestions(@Param("category")String category, @Param("difficulty")String difficulty , @Param("questionNo") Integer questionNo);
+
+    List<Question> findByQuestionIdIn(List<Integer> ids);
 }

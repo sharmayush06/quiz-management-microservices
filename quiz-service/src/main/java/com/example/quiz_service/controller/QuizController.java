@@ -21,6 +21,11 @@ public class QuizController {
         return quizService.createQuiz(questionDto);
     }
 
+    @GetMapping("/get/{id}")
+    public ResponseEntity<List<QuestionWrapper>> getQuiz(@PathVariable Integer id){
+        return quizService.getQuiz(id);
+    }
+
     @PostMapping("/result")
     public ResponseEntity<Integer> result(@RequestBody List<ResultDto> resultDtos){
         return quizService.result(resultDtos);
